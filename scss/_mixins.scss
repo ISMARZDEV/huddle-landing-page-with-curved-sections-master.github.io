@@ -1,0 +1,130 @@
+@use 'variables';
+
+@mixin desktop-view($width, $height: unset, $font-size: unset){
+    @media (min-width: 600px){
+        width: $width;
+        height: $height;
+        font-size: $font-size;
+    }
+}
+
+@mixin button ($bg-color, $br-color, $fn-color, $width, $height, $center) {
+    background-color: $bg-color;
+    border: none;
+    border: 1px solid $br-color;
+    border-radius: 50px;
+    color: $fn-color;
+    width: $width;
+    height: $height;
+    display: block;
+
+    @if($center == true){
+        margin: 0 auto;
+    }
+}
+
+
+@mixin button-hover($bg-color){
+    &:hover{
+        cursor: pointer;
+        background-color: $bg-color;
+        color: variables.$white;
+    }
+}
+
+@mixin stats($logo){
+    margin-bottom: 50px;
+    text-align: center;
+
+    &_logo{
+        width: $logo;
+    }
+    &_stats{
+        font-size: 4em;
+        margin: 0;
+    }
+    &_description{
+        font-size: 0.8em;
+        text-align: center;
+        @content
+    }
+    @content
+}
+
+@mixin stats-desktop(){
+    @media (min-width: 1440px){
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        justify-content: space-around;
+        // .communities{
+        //  margin: 0 300px;
+        // }
+    }
+}
+
+@mixin flex-sections{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .image_container_ilustration{
+        width: 246px;
+        margin-bottom: 20px;
+        
+    }
+    .description{
+        &_title{
+            font-family: variables.$Headings-font;
+            font-size: 1.2rem;
+            text-align: center;
+
+        }
+        &_content{
+            text-align: center;
+            font-size: 0.9em;
+            width: 330px;
+            
+        }
+    }
+}
+
+@mixin flex-sections-desktop ($row-reverse){
+    @media (min-width: 1440px){
+        margin-bottom: 200px;
+        flex-direction: row;
+        @if ($row-reverse == true){
+            flex-direction: row-reverse;
+        }
+        .image_container_ilustration{
+            width: 400px;
+            margin: 0 100px;
+            
+        }
+        .description{
+            &_title{
+                font-family: variables.$Headings-font;
+                font-size: 1.7rem;
+                text-align: center;
+            }
+            &_content{
+                text-align: center;
+                font-size: 1em;
+                width: 450px;
+                
+            }
+        }
+    }
+}
+
+@mixin banner($url-top, $url-bottom){
+    background: {
+        image: url($url-top), url($url-bottom);
+        repeat: no-repeat, no-repeat;
+        position: top, bottom;
+      
+      
+    };
+    background-size: contain;
+}
